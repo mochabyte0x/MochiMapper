@@ -66,3 +66,4 @@ Static analysis will likely catch this in the current state. For better OPSEC, c
 - (indirect) Syscalls
 - Better KEY/IV retrieval (maybe remotely ?)
 - Build it CRT Free for better entropy
+- Turn this into a reflective DLL loader
