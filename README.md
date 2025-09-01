@@ -15,19 +15,30 @@ A minimal **manual PE loader** that maps a PE from the `.rsrc` section into memo
 
 ## How-To
 
+>[!NOTE]
+> If you compile *MochiMapper* and run it, the loader will launch *mimikatz.exe* which is put as a "demo" binary. Replace the content of the `.rsrc` section with something else.
+
 ### Utility
 
-"ObfusX" is also included as a utility tool to encrypt PEs/shellcode in various formats.
+*ObfusX* is also included as a utility tool to encrypt PEs/shellcode in various formats.
 
-```
+```powershell
 python3 obfusX.py -p <TARGET PE> -enc aes-128 -o encrypted_pe
 ```
 
-Place the generated file in the .rsrc section of *MochiMapper*. Change the AES KEY/IV in the code aswell.
+Place the generated file in the `.rsrc` section of *MochiMapper*. Change the AES KEY/IV (located in the main function) in the code aswell.
 
 ### CMD-Line Argument Support
 
+*MochiMapper* supports command line arguments. You can define them in the "structs.h" header file. Leave empty if not needed.
+
+<img width="657" height="92" alt="image" src="https://github.com/user-attachments/assets/4ce239b6-5a04-44d6-bfeb-566cfc9df928" />
+
 ### Exported Function Support (DLL)
+
+If your target PE is a DLL AND the entrypoint is not through DllMain but rather through an exported function, you can specify this in the "structs.h" header. Leave empty if not needed.
+
+<img width="657" height="92" alt="image" src="https://github.com/user-attachments/assets/af68478d-b97d-4e56-8b42-c9fa5d26fdad" />
 
 ### IAT hooks (optional)
 
@@ -39,9 +50,13 @@ Enable command-line hiding/spoofing without touching the PEB:
 - ExitProcess / exit family → observe or suppress termination
 - GetModuleFileNameA/W(NULL, …) → return a fake name
 
-Just pass CmdlineHookCB to the IAT repairer. *Hooks* store originals and swap IAT slots to your hook functions.
+Just pass `CmdlineHookCB` to the IAT repair function (already placed, but remove if you don't want to use this feature). *Hooks* store originals and swap IAT slots to your hook functions.
 
 ## Demo
+
+<img width="1351" height="739" alt="image" src="https://github.com/user-attachments/assets/8255f54e-1c12-4854-8b75-a53c59668ccb" />
+
+
 
 ## OPSEC
 
@@ -49,4 +64,5 @@ Static analysis will likely catch this in the current state. For better OPSEC, c
 
 - API Hashing
 - (indirect) Syscalls
-- Better key/iv retrieval (maybe remotely ?)
+- Better KEY/IV retrieval (maybe remotely ?)
+- Build it CRT Free for better entropy
