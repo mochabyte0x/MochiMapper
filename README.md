@@ -1,6 +1,6 @@
 # MochiMapper
 
-A minimal **manual PE loader** that maps a PE from the `.rsrc` section into memory and emulates some parts of the Windows loader.
+A minimal **manual PE loader** that maps a PE from the `.rsrc` section into memory and emulates some parts of the Windows loader. I'm (probably) not gonna add more features to it. Too lazy for that, sry.
 
 >[!CAUTION]
 >This tool is designed for authorized operations only. I AM NOT RESPONSIBLE FOR YOUR ACTIONS. DON'T DO BAD STUFF.
