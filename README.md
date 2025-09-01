@@ -2,6 +2,9 @@
 
 A minimal **manual PE loader** that maps a PE from the `.rsrc` section into memory and emulates some parts of the Windows loader.
 
+>[!CAUTION]
+>This tool is designed for authorized operations only. I AM NOT RESPONSIBLE FOR YOUR ACTIONS. DON'T DO BAD STUFF.
+
 ## Features
 
 - Manual map from memory (payload embedded in `.rsrc` and optionally encrypted)
@@ -30,13 +33,13 @@ Place the generated file in the `.rsrc` section of *MochiMapper*. Change the AES
 
 ### CMD-Line Argument Support
 
-*MochiMapper* supports command line arguments. You can define them in the "structs.h" header file. Leave empty if not needed.
+*MochiMapper* supports command line arguments. You can define them in the "structs.h" header. Leave blank if not needed.
 
 <img width="657" height="92" alt="image" src="https://github.com/user-attachments/assets/4ce239b6-5a04-44d6-bfeb-566cfc9df928" />
 
 ### Exported Function Support (DLL)
 
-If your target PE is a DLL AND the entrypoint is not through DllMain but rather through an exported function, you can specify this in the "structs.h" header. Leave empty if not needed.
+If your target PE is a DLL AND the entrypoint is not DllMain but an exported function, you can specify this in the "structs.h" header. Leave blank if not needed.
 
 <img width="657" height="92" alt="image" src="https://github.com/user-attachments/assets/af68478d-b97d-4e56-8b42-c9fa5d26fdad" />
 
@@ -56,8 +59,6 @@ Just pass `CmdlineHookCB` to the IAT repair function (already placed, but remove
 
 <img width="1351" height="739" alt="image" src="https://github.com/user-attachments/assets/8255f54e-1c12-4854-8b75-a53c59668ccb" />
 
-
-
 ## OPSEC
 
 Static analysis will likely catch this in the current state. For better OPSEC, consider adding:
@@ -66,4 +67,4 @@ Static analysis will likely catch this in the current state. For better OPSEC, c
 - (indirect) Syscalls
 - Better KEY/IV retrieval (maybe remotely ?)
 - Build it CRT Free for better entropy
-- Turn this into a reflective DLL loader
+- Convert this into a reflective DLL loader
