@@ -46,7 +46,7 @@ If your target PE is a DLL AND the entrypoint is not DllMain but an exported fun
 ### IAT hooks (optional)
 
 >[!NOTE]
-> In the current implementation of MochiMapper, you do NOT need this to be enabled. There are no command line arguments per se since the PE is read from the .rsrc section. However, in case you want to change MochiMappers behavior and read the PE file from disk, you will need some kind of command line argument "obfuscation". This is your (potential) solution to it.
+> In the current implementation of MochiMapper, you do NOT need to enable this. There are no command line arguments per se since the PE is read from the .rsrc section. However, in case you want to change MochiMappers behavior and read the PE file from disk, you will need some kind of command line argument "obfuscation". This is your (potential) solution to it.
 
 Enable command-line hiding/spoofing without touching the PEB:
 
